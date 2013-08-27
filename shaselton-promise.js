@@ -30,6 +30,13 @@ must not transition to any other state.
 must have a reason, which must not change.
  */
 
+var events = [];
+
+var newEvent = function(){
+	var id;
+	id = setTimeout()
+};
+
 var State = {
 	PENDING: 0,
 	FULFILLED: 1,
@@ -37,10 +44,23 @@ var State = {
 };
 
 var Promise = {
+	state: null,
 	then: function( onFulfilled, onRejected ){
-		var fulfilled = ( typeof(onFulfilled) === "function" ) ? onFulfilled : undefined,
-			rejected = ( typeof(onRejected) === "function" ) ? onRejected : undefined,
 
+		/**
+		 * Both onFulfilled and onRejected are optional arguments:
+				If onFulfilled is not a function, it must be ignored.
+				If onRejected is not a function, it must be ignored.
+			If onFulfilled is a function:
+				it must be called after promise is fulfilled, with promise’s fulfillment value as its first argument.
+				it must not be called more than once.
+				it must not be called if onRejected has been called.
+		 */	
+		
+		var fulfilled = ( typeof(onFulfilled) === "function" ),
+			rejected = ( typeof(onRejected) === "function" );
+
+		console.log( fulfilled, rejected );
 
 	}
-}
+};
